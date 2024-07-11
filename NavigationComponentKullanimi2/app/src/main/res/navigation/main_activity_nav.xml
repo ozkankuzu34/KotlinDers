@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/anasayfaFragment"
-        android:name="com.kotlindersleri.navigationcomponentkullanimi.AnasayfaFragment"
+        android:name="com.kotlindersleri.navigationcomponentkullanimi2.AnasayfaFragment"
         android:label="fragment_anasayfa"
         tools:layout="@layout/fragment_anasayfa" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/detayFragment"
-        android:name="com.kotlindersleri.navigationcomponentkullanimi.DetayFragment"
+        android:name="com.kotlindersleri.navigationcomponentkullanimi2.DetayFragment"
         android:label="fragment_detay"
         tools:layout="@layout/fragment_detay" >
         <argument
@@ -39,11 +39,11 @@
             android:defaultValue="false" />
         <argument
             android:name="urun"
-            app:argType="com.kotlindersleri.navigationcomponentkullanimi.Urunler" />
+            app:argType="com.kotlindersleri.navigationcomponentkullanimi2.Urunler" />
     </fragment>
     <fragment
         android:id="@+id/ayarlarFragment"
-        android:name="com.kotlindersleri.navigationcomponentkullanimi.AyarlarFragment"
+        android:name="com.kotlindersleri.navigationcomponentkullanimi2.AyarlarFragment"
         android:label="fragment_ayarlar"
         tools:layout="@layout/fragment_ayarlar" />
 </navigation>
