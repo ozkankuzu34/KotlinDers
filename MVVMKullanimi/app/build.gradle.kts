@@ -1,19 +1,19 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("androidx.navigation.safeargs")
 }
 
 android {
-    namespace = "com.kotlindersleri.filmlerapp"
+    namespace = "com.kotlindersleri.mvvmkullanimi"
     compileSdk = 34
 
     buildFeatures{
         viewBinding=true
+        dataBinding=true
     }
 
     defaultConfig {
-        applicationId = "com.kotlindersleri.filmlerapp"
+        applicationId = "com.kotlindersleri.mvvmkullanimi"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -40,7 +40,6 @@ android {
     }
 }
 
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -48,9 +47,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.3")
+    implementation("androidx.activity:activity-ktx:1.9.0")
 }
