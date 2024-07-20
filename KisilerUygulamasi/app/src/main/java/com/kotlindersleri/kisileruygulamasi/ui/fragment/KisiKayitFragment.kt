@@ -6,30 +6,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.kotlindersleri.kisileruygulamasi.R
 import com.kotlindersleri.kisileruygulamasi.databinding.FragmentKisiKayitBinding
+import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiKayitViewModel
 
 
 class KisiKayitFragment : Fragment() {
     private lateinit var binding: FragmentKisiKayitBinding
+    private lateinit var viewModel: KisiKayitViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=FragmentKisiKayitBinding.inflate(inflater,container,false)
-        binding.toolbarKisiKayit.title="Kişi Kayıt"
-
-        binding.buttonKayit.setOnClickListener {
-            val kisi_ad=binding.editTextKisiAd.text.toString()
-            val kisi_tel=binding.editTextKisiTel.text.toString()
-
-            kaydet(kisi_ad,kisi_tel)
-        }
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_kisi_kayit,container,false)
+        binding.kisiKayitFragment=this
+        binding.kisiKayitToolbarBaslik="Kişi Kayıt"
         return binding.root
     }
 
-    fun kaydet(kisi_ad:String,kisi_tel:String){
-        Log.e("Kişi Kaydet","$kisi_ad - $kisi_tel")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel:KisiKayitViewModel by viewModels()
+        viewModel=tempViewModel
+
+    }
+
+    fun buttonKaydet(kisi_ad:String,kisi_tel:String){
+        viewModel.kaydet(kisi_ad,kisi_tel)
     }
 
 
