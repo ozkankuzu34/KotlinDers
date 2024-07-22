@@ -14,6 +14,7 @@ import com.kotlindersleri.kisileruygulamasi.databinding.CardTasarimBinding
 import com.kotlindersleri.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.kotlindersleri.kisileruygulamasi.ui.fragment.AnasayfaFragmentDirections
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
+import com.kotlindersleri.kisileruygulamasi.util.gecisYap
 
 class KisilerAdapter (var mContext:Context,var kisilerListesi:List<Kisiler>,var viewModel: AnasayfaViewModel)
     : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>(){
@@ -33,8 +34,8 @@ class KisilerAdapter (var mContext:Context,var kisilerListesi:List<Kisiler>,var 
         t.kisiNesnesi=kisi
 
         t.cardViewSatir.setOnClickListener {
-            val gecis=AnasayfaFragmentDirections.kisiDetayGecis(kisi)
-            Navigation.findNavController(it).navigate(gecis)
+            val gecis=AnasayfaFragmentDirections.kisiDetayGecis(kisi) 
+            Navigation.gecisYap(it,R.id.kisiKayitGecis)
         }
         t.imageViewSil.setOnClickListener {
             Snackbar.make(it,"${kisi.kisi_ad} silinsin mi?",Snackbar.LENGTH_SHORT)

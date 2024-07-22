@@ -18,8 +18,11 @@ import com.kotlindersleri.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.kotlindersleri.kisileruygulamasi.ui.adapter.KisilerAdapter
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
+import com.kotlindersleri.kisileruygulamasi.util.gecisYap
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var viewModel: AnasayfaViewModel
@@ -49,12 +52,12 @@ class AnasayfaFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
-                ara(newText)
+                viewModel.ara(newText)
                 return true
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                ara(query)
+                viewModel.ara(query)
                 return true
             }
         })
@@ -70,12 +73,15 @@ class AnasayfaFragment : Fragment() {
     }
 
     fun fabTikla(it:View){
-        Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
+        Navigation.gecisYap(it,R.id.kisiKayitGecis)
     }
 
-    fun ara(aramaKelimesi:String){
-        Log.e("Kişi Ara",aramaKelimesi)
+    override fun onResume() {
+        super.onResume()
+        viewModel.kisileriYukle()
     }
+
+
 
 
 }

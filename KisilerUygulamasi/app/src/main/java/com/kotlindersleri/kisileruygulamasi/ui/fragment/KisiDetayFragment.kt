@@ -13,8 +13,10 @@ import com.kotlindersleri.kisileruygulamasi.R
 import com.kotlindersleri.kisileruygulamasi.databinding.FragmentKisiDetayBinding
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class KisiDetayFragment : Fragment() {
     private lateinit var binding: FragmentKisiDetayBinding
     private lateinit var viewModel: KisiDetayViewModel
