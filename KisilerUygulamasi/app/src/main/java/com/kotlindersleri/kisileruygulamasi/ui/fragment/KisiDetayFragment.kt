@@ -6,32 +6,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.kotlindersleri.kisileruygulamasi.R
+import com.kotlindersleri.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.kotlindersleri.kisileruygulamasi.databinding.FragmentKisiDetayBinding
+import com.kotlindersleri.kisileruygulamasi.ui.adapter.KisilerAdapter
+import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiKayitViewModel
+import com.kotlindersleri.kisileruygulamasi.util.gecisYap
 import dagger.hilt.android.AndroidEntryPoint
+
+
 
 
 @AndroidEntryPoint
 class KisiDetayFragment : Fragment() {
     private lateinit var binding: FragmentKisiDetayBinding
     private lateinit var viewModel: KisiDetayViewModel
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_kisi_detay,container,false)
-        binding.kisiDetayFragment=this
-        binding.kisiDetayToolbarBaslik="Kişi Detay"
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kisi_detay, container, false)
+        binding.kisiDetayFragment = this
+        binding.kisiDetayToolbarBaslik = "Kişi Detay"
 
         val bundle:KisiDetayFragmentArgs by navArgs()
-        val gelenKisi=bundle.kisi
-
-        binding.kisiNesnesi=gelenKisi
+        val gelenKisi = bundle.kisi
+        binding.kisiNesnesi = gelenKisi
 
         return binding.root
     }
@@ -39,13 +43,10 @@ class KisiDetayFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempViewModel: KisiDetayViewModel by viewModels()
-        viewModel=tempViewModel
-
+        viewModel = tempViewModel
     }
 
     fun buttonGuncelle(kisi_id:Int,kisi_ad:String,kisi_tel:String){
-       viewModel.guncelle(kisi_id, kisi_ad, kisi_tel)
+        viewModel.guncelle(kisi_id,kisi_ad,kisi_tel)
     }
-
-
 }

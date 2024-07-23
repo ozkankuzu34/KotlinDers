@@ -16,27 +16,27 @@ import com.kotlindersleri.kisileruygulamasi.ui.fragment.AnasayfaFragmentDirectio
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
 import com.kotlindersleri.kisileruygulamasi.util.gecisYap
 
-class KisilerAdapter (var mContext:Context,var kisilerListesi:List<Kisiler>,var viewModel: AnasayfaViewModel)
-    : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>(){
+class KisilerAdapter(var mContext:Context,var kisilerListesi:List<Kisiler>,var viewModel:AnasayfaViewModel)
+    : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>() {
 
-    inner class  CardTasarimTutucu(var tasarim:CardTasarimBinding) : RecyclerView.ViewHolder(tasarim.root)
+    inner class CardTasarimTutucu(var tasarim:CardTasarimBinding) : RecyclerView.ViewHolder(tasarim.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimTutucu {
-        val binding:CardTasarimBinding=DataBindingUtil.inflate(LayoutInflater.from(mContext),
-            R.layout.card_tasarim,parent,false)
+        val binding:CardTasarimBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),R.layout.card_tasarim ,parent, false)
         return CardTasarimTutucu(binding)
     }
 
     override fun onBindViewHolder(holder: CardTasarimTutucu, position: Int) {
-        val kisi=kisilerListesi.get(position)
-        val t=holder.tasarim
+        val kisi = kisilerListesi.get(position)
+        val t = holder.tasarim
 
-        t.kisiNesnesi=kisi
+        t.kisiNesnesi = kisi
 
         t.cardViewSatir.setOnClickListener {
-            val gecis=AnasayfaFragmentDirections.kisiDetayGecis(kisi) 
-            Navigation.gecisYap(it,R.id.kisiKayitGecis)
+            val gecis = AnasayfaFragmentDirections.kisiDetayGecis(kisi)
+            Navigation.gecisYap(it,gecis)
         }
+
         t.imageViewSil.setOnClickListener {
             Snackbar.make(it,"${kisi.kisi_ad} silinsin mi?",Snackbar.LENGTH_SHORT)
                 .setAction("EVET"){
@@ -44,12 +44,9 @@ class KisilerAdapter (var mContext:Context,var kisilerListesi:List<Kisiler>,var 
                 }
                 .show()
         }
-
     }
 
     override fun getItemCount(): Int {
         return kisilerListesi.size
     }
-
-
 }

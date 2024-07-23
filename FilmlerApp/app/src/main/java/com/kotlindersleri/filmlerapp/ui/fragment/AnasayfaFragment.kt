@@ -13,8 +13,10 @@ import com.kotlindersleri.filmlerapp.data.entity.Filmler
 import com.kotlindersleri.filmlerapp.databinding.FragmentAnasayfaBinding
 import com.kotlindersleri.filmlerapp.ui.adapter.FilmlerAdapter
 import com.kotlindersleri.filmlerapp.ui.viewmodel.AnasayfaViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var viewModel: AnasayfaViewModel
