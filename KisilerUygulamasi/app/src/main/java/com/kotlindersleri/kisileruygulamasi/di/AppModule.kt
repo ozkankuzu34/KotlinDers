@@ -1,9 +1,10 @@
 package com.kotlindersleri.kisileruygulamasi.di
 
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.kotlindersleri.kisileruygulamasi.data.datasource.KisilerDataSource
 import com.kotlindersleri.kisileruygulamasi.data.repo.KisilerRepository
-import com.kotlindersleri.kisileruygulamasi.retrofit.ApiUtils
-import com.kotlindersleri.kisileruygulamasi.retrofit.KisilerDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,20 +17,19 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideKisilerDataSource(kdao:KisilerDao) :KisilerDataSource{
-        return KisilerDataSource(kdao)
+    fun provideKisilerDataSource(collectionKisiler:CollectionReference) : KisilerDataSource {
+        return KisilerDataSource(collectionKisiler)
     }
 
     @Provides
     @Singleton
-    fun provideKisilerRepository(kds:KisilerDataSource) :KisilerRepository{
+    fun provideKisilerRepository(kds:KisilerDataSource) : KisilerRepository {
         return KisilerRepository(kds)
     }
 
     @Provides
     @Singleton
-    fun provideKisilerDao() :KisilerDao{
-        return ApiUtils.getKisilerDao()
+    fun provideCollectionReference() : CollectionReference {
+        return Firebase.firestore.collection("Kisiler")
     }
-
 }

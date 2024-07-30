@@ -20,14 +20,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class KisiDetayFragment : Fragment() {
     private lateinit var binding: FragmentKisiDetayBinding
     private lateinit var viewModel: KisiDetayViewModel
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kisi_detay, container, false)
-        binding.kisiDetayFragment = this
-        binding.kisiDetayToolbarBaslik = "Kişi Detay"
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_kisi_detay,container,false)
+        binding.kisiDetayFragment=this
+        binding.kisiDetayToolbarBaslik="Kişi Detay"
 
         val bundle:KisiDetayFragmentArgs by navArgs()
-        val gelenKisi = bundle.kisi
-        binding.kisiNesnesi = gelenKisi
+        val gelenKisi=bundle.kisi
+
+        binding.kisiNesnesi=gelenKisi
 
         return binding.root
     }
@@ -35,10 +39,13 @@ class KisiDetayFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempViewModel: KisiDetayViewModel by viewModels()
-        viewModel = tempViewModel
+        viewModel=tempViewModel
+
     }
 
-    fun buttonGuncelle(kisi_id:Int,kisi_ad:String,kisi_tel:String){
-        viewModel.guncelle(kisi_id,kisi_ad,kisi_tel)
+    fun buttonGuncelle(kisi_id:String,kisi_ad:String,kisi_tel:String){
+       viewModel.guncelle(kisi_id, kisi_ad, kisi_tel)
     }
+
+
 }
