@@ -6,22 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.kotlindersleri.kisileruygulamasi.R
-import com.kotlindersleri.kisileruygulamasi.databinding.FragmentAnasayfaBinding
 import com.kotlindersleri.kisileruygulamasi.databinding.FragmentKisiDetayBinding
-import com.kotlindersleri.kisileruygulamasi.ui.adapter.KisilerAdapter
-import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
 import com.kotlindersleri.kisileruygulamasi.ui.viewmodel.KisiKayitViewModel
-import com.kotlindersleri.kisileruygulamasi.util.gecisYap
 import dagger.hilt.android.AndroidEntryPoint
-
-
 
 
 @AndroidEntryPoint

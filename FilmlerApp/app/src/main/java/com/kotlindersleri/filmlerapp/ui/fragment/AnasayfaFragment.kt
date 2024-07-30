@@ -20,23 +20,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var viewModel: AnasayfaViewModel
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa, container, false)
+        binding.anasayfaToolbarBaslik = "Filmler"
 
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa,container,false)
-        binding.anasayfaToolbarBaslik="Filmler"
-
-       viewModel.filmlerListesi.observe(viewLifecycleOwner){
-           val filmlerAdapter=FilmlerAdapter(requireContext(),it)
-           binding.filmlerAdapter=filmlerAdapter
-       }
-
-        
-
+        viewModel.filmlerListesi.observe(viewLifecycleOwner){
+            val filmlerAdapter = FilmlerAdapter(requireContext(),it)
+            binding.filmlerAdapter = filmlerAdapter
+        }
 
         return binding.root
     }
@@ -44,8 +35,6 @@ class AnasayfaFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val tempViewModel:AnasayfaViewModel by viewModels()
-        viewModel=tempViewModel
+        viewModel = tempViewModel
     }
-
-
 }

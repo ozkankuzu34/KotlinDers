@@ -12,17 +12,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AnasayfaViewModel @Inject constructor(var frepo:FilmlerRepository):ViewModel() {
+class AnasayfaViewModel @Inject constructor(var frepo:FilmlerRepository) : ViewModel() {
+    var filmlerListesi = MutableLiveData<List<Filmler>>()
 
-var filmlerListesi=MutableLiveData<List<Filmler>>()
-
-init {
-    filmleriYukle()
-}
+    init {
+        filmleriYukle()
+    }
 
     fun filmleriYukle(){
         CoroutineScope(Dispatchers.Main).launch {
-           filmlerListesi.value= frepo.filmleriYukle()
+            filmlerListesi.value = frepo.filmleriYukle()
         }
     }
 }
