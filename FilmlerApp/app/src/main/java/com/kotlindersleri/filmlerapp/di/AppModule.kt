@@ -1,9 +1,10 @@
 package com.kotlindersleri.filmlerapp.di
 
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.kotlindersleri.filmlerapp.data.datasource.FilmlerDataSource
 import com.kotlindersleri.filmlerapp.data.repo.FilmlerRepository
-import com.kotlindersleri.filmlerapp.retrofit.ApiUtils
-import com.kotlindersleri.filmlerapp.retrofit.FilmlerDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +16,8 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideFilmlerDataSource(fdao:FilmlerDao) : FilmlerDataSource {
-        return FilmlerDataSource(fdao)
+    fun provideFilmlerDataSource(collectionFilmler: CollectionReference) : FilmlerDataSource {
+        return FilmlerDataSource(collectionFilmler)
     }
 
     @Provides
@@ -27,7 +28,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideFilmlerDao() : FilmlerDao {
-        return ApiUtils.getFilmlerDao()
+    fun provideCollectionReference() : CollectionReference {
+        return Firebase.firestore.collection("Filmler")
     }
 }
